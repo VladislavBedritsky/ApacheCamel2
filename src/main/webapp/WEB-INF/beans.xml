@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://camel.apache.org/schema/spring
+        http://camel.apache.org/schema/spring/camel-spring.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="org.example.*"/>
+
+    <camel:camelContext id="producerCamelContext">
+        <camel:route>
+<!--            <camel:from uri="file:src\\main\\resources\\employees.csv"/>-->
+            <camel:from uri="direct:start"/>
+<!--            <camel:process ref="transformFromCSVtoJSON" />-->
+            <camel:to uri="bean:myService?method=print" />
+        </camel:route>
+    </camel:camelContext>
+
+    <bean id="myService" class="org.example.camel.service.impl.MyServiceImpl" />
+
+</beans>

@@ -14,6 +14,8 @@ public class MyServiceImplTest {
 
     @Autowired
     private CamelContext producerCamelContext;
+    @Autowired
+    private CamelContext camelFromCsvToJson;
 
     @Test
     public void test() throws Exception {
@@ -23,4 +25,12 @@ public class MyServiceImplTest {
         producerTemplate.sendBody("direct:start", "objectToActiveMQ");
         producerCamelContext.stop();
     }
+
+    @Test
+    public void test2() throws Exception {
+        camelFromCsvToJson.start();
+        Thread.sleep(4000);
+        camelFromCsvToJson.stop();
+    }
+
 }

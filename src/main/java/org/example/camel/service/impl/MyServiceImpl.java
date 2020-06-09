@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 public class MyServiceImpl implements MyService {
     @Override
     public void print(String content) {
-        System.out.println(content);
+
     }
 }

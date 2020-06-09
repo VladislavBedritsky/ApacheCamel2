@@ -16,9 +16,11 @@ public class MyServiceImplTest {
     private CamelContext producerCamelContext;
     @Autowired
     private CamelContext camelFromCsvToJson;
+    @Autowired
+    private CamelContext camelFromCsvToXml;
 
     @Test
-    public void test() throws Exception {
+    public void produceStringToBeanMethod() throws Exception {
         producerCamelContext.start();
 
         ProducerTemplate producerTemplate = producerCamelContext.createProducerTemplate();
@@ -27,10 +29,18 @@ public class MyServiceImplTest {
     }
 
     @Test
-    public void test2() throws Exception {
+    public void fromCsvToJson() throws Exception {
         camelFromCsvToJson.start();
         Thread.sleep(4000);
         camelFromCsvToJson.stop();
     }
+
+    @Test
+    public void fromCsvToXml() throws Exception {
+        camelFromCsvToXml.start();
+        Thread.sleep(4000);
+        camelFromCsvToXml.stop();
+    }
+
 
 }

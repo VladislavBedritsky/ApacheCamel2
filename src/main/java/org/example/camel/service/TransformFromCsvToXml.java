@@ -1,7 +1,7 @@
 package org.example.camel.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.example.camel.dto.Employee;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TransformFromCsvToJson implements Processor {
+public class TransformFromCsvToXml implements Processor {
 
     @Autowired
     private MyService myService;
@@ -22,12 +22,10 @@ public class TransformFromCsvToJson implements Processor {
 
         List<Employee> employees = myService.getListOfEmployeesFromCsv(payload);
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        String json = mapper.writeValueAsString(employees);
+        XmlMapper xmlMapper = new XmlMapper();
+        xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        String xml = xmlMapper.writeValueAsString(employees);
 
-        exchange.getIn().setBody(json);
+        exchange.getIn().setBody(xml);
     }
-
-
 }

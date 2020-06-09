@@ -1,0 +1,27 @@
+<ArrayList>
+  <item>
+    <id>1</id>
+    <name>Robert</name>
+    <salary>3000</salary>
+  </item>
+  <item>
+    <id>2</id>
+    <name>James</name>
+    <salary>3000</salary>
+  </item>
+  <item>
+    <id>3</id>
+    <name>Steve</name>
+    <salary>5000</salary>
+  </item>
+  <item>
+    <id>4</id>
+    <name>Brian</name>
+    <salary>7000</salary>
+  </item>
+  <item>
+    <id>5</id>
+    <name>Christian</name>
+    <salary>6000</salary>
+  </item>
+</ArrayList>

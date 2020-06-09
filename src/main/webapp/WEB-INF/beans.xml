@@ -14,13 +14,29 @@
 
     <camel:camelContext id="producerCamelContext">
         <camel:route>
-<!--            <camel:from uri="file:src\\main\\resources\\employees.csv"/>-->
             <camel:from uri="direct:start"/>
-<!--            <camel:process ref="transformFromCSVtoJSON" />-->
             <camel:to uri="bean:myService?method=print" />
         </camel:route>
     </camel:camelContext>
 
+    <camel:camelContext id="camelFromCsvToJson">
+        <camel:route>
+            <camel:from uri="file:src/main/resources/?fileName=employees.csv&amp;noop=true"/>
+            <camel:process ref="transformFromCSVtoJSON" />
+            <camel:to uri="file:src/main/resources/?fileName=employees.json" />
+        </camel:route>
+    </camel:camelContext>
+
+    <camel:camelContext id="camelFromCsvToXml">
+        <camel:route>
+            <camel:from uri="file:src/main/resources/?fileName=employees.csv&amp;noop=true"/>
+            <camel:process ref="transformFromCSVtoXml" />
+            <camel:to uri="file:src/main/resources/?fileName=employees.xml" />
+        </camel:route>
+    </camel:camelContext>
+
     <bean id="myService" class="org.example.camel.service.impl.MyServiceImpl" />
+    <bean id="transformFromCSVtoJSON" class="org.example.camel.service.TransformFromCsvToJson" />
+    <bean id="transformFromCSVtoXml" class="org.example.camel.service.TransformFromCsvToXml" />
 
 </beans>
